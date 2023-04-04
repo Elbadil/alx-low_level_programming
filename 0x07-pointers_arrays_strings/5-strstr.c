@@ -20,10 +20,15 @@ char *_strstr(char *haystack, char *needle)
 			{
 				b++;
 			}
+			else
+			{
+				break;
+			}
 		}
 		if (needle[b])
 		{
 			a++;
+			b = 0;
 		}
 		else
 		{
