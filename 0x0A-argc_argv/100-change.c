@@ -24,12 +24,14 @@ int main(int argc, char *argv[])
 		printf("0\n");
 		return (0);
 	}
-	for (i = 0; i < 5 && num >= 0; i++)
+	i = 0;
+	while (i < 5 && num >= 0)
 	{
+		i++;
 		while (num >= coins[i])
 		{
+			count++;
 			num -= coins[i];
-			count ++;
 		}
 	}
 	printf("%d\n", count);
