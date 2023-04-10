@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
 	{
 		while (num >= coins[i])
 		{
-			num -= coins[i];
 			count++;
+			num -= coins[i];
 		}
 	}
 	printf("%d\n", count);
