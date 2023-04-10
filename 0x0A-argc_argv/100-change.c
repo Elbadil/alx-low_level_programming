@@ -27,12 +27,12 @@ int main(int argc, char *argv[])
 	i = 0;
 	while (i < 5 && num >= 0)
 	{
-		i++;
 		while (num >= coins[i])
 		{
 			count++;
 			num -= coins[i];
 		}
+		i++;
 	}
 	printf("%d\n", count);
 	return (0);
