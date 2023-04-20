@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include "function_pointers.h"
 /**
  * main - Entry point
  * @argc: number of arguments
