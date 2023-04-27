@@ -23,13 +23,13 @@ list_t *add_node_end(list_t **head, const char *str)
 	newn->str = strdup(str);
 	newn->len = i;
 	newn->next = NULL;
-	
+
 	if (*head == NULL)
 	{
 		(*head) = newn;
 		return (newn);
 	}
-	
+
 	while (temp->next != NULL)
 	{
 		temp = temp->next;
