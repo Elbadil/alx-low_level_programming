@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
 
 		i = read(fpf, b, 1024);
 		fpt = open(argv[2], O_WRONLY | O_APPEND);
-	} while (i < 0);
+	} while (i > 0);
 
 	free(b);
 	close_fd(fpf);
