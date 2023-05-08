@@ -3,12 +3,13 @@
  * init_buffer - Initialize a buffer with 1024 bytes
  * @filename: name of file
  * Return: Pointer to the new buffer
-*/
+ */
 char *init_buffer(char *filename)
 {
 	char *b;
 
 	b = malloc(sizeof(char) * 1024);
+
 	if (b == NULL)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
@@ -21,16 +22,16 @@ char *init_buffer(char *filename)
 /**
  * close_fd - Closes fdescriptor
  * @fd: File descriptor
-*/
+ */
 void close_fd(int fd)
 {
-	int d;
+	int c;
 
-	d = close(fd);
+	c = close(fd);
 
-	if (d == -1)
+	if (c == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d", fd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
 		exit(100);
 	}
 }
@@ -40,11 +41,11 @@ void close_fd(int fd)
  * @argc: number of arguments
  * @argv: Array of pointers to the arguments
  * Return: Always 0 (success)
-*/
+ */
 int main(int argc, char *argv[])
 {
-	char *b;
 	int fpf, fpt, i, j;
+	char *b;
 
 	if (argc != 3)
 	{
@@ -56,9 +57,7 @@ int main(int argc, char *argv[])
 	fpf = open(argv[1], O_RDONLY);
 	i = read(fpf, b, 1024);
 	fpt = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-
-	while (i < 0)
-	{
+	do {
 		if (fpf == -1 || i == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
@@ -76,8 +75,8 @@ int main(int argc, char *argv[])
 
 		i = read(fpf, b, 1024);
 		fpt = open(argv[2], O_WRONLY | O_APPEND);
-	}
 
+	} while (i > 0);
 	free(b);
 	close_fd(fpf);
 	close_fd(fpt);
