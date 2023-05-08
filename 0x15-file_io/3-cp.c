@@ -57,7 +57,8 @@ int main(int argc, char *argv[])
 	fpf = open(argv[1], O_RDONLY);
 	i = read(fpf, b, 1024);
 	fpt = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	do {
+	while (i > 0)
+	{
 		if (fpf == -1 || i == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
@@ -75,8 +76,7 @@ int main(int argc, char *argv[])
 
 		i = read(fpf, b, 1024);
 		fpt = open(argv[2], O_WRONLY | O_APPEND);
-
-	} while (i > 0);
+	}
 	free(b);
 	close_fd(fpf);
 	close_fd(fpt);
