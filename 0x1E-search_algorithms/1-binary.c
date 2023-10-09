@@ -53,13 +53,13 @@ int binary_search(int *array, size_t size, int value)
 			return (mid);
 		}
 
-		/* go right if the value of the middle index is less than the value */
+		/* go right if the value of the middle index is bigger than the value */
 		if (array[mid] < value)
 		{
 			left = mid + 1;
 		}
 
-		/* go left if the value of the middle index is bigger than the value */
+		/* go left if the value of the middle index is less than the value */
 		if (array[mid] > value)
 		{
 			right = mid - 1;
