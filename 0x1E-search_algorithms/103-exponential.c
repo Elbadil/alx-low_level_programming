@@ -40,10 +40,10 @@ int exponential_search(int *array, size_t size, int value)
 	int mid;
 	size_t i = 1;
 
-	if (array == NULL)
+	if (array == NULL || size == 0)
 		return (-1);
 
-	while (array[i] < value && i < size)
+	while (array[i] <= value)
 	{
 		printf("Value checked array[%ld] = [%d]\n", i, array[i]);
 		i *= 2;
