@@ -23,20 +23,19 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	block_size = sqrt(size);
 	i = block_size;
-
-	while (temp != NULL && temp->n < value && i < size)
+	while (temp != NULL && temp->n < value)
 	{
 		prev = temp;
+		i = i < size ? i : size - 1;
 		while (temp != NULL && temp->index != i)
-		{
 			temp = temp->next;
-		}
 		if (temp != NULL && temp->n < value)
-		{
 			i += block_size;
-		}
 		printf("Value checked at index [%ld] = [%d]\n", temp->index, temp->n);
+		if (temp->index + 1 >= size)
+			break;
 	}
+
 	left = prev->index;
 	right = temp->index;
 	printf("Value found between indexes [%ld] and [%ld]\n", left, right);
