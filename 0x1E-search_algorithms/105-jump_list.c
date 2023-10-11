@@ -1,13 +1,18 @@
 #include "search_algos.h"
 
 /**
- * 
+ * jump_list - searches for a value in a sorted list of integers
+ * using the Jump search algorithm
+ * @list: pointer to the head of the list
+ * @size: size of the linked list
+ * @value: The integer we are searching for
+ * Return: pointer to the first node where value is located
 */
 
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
 	listint_t *temp = list;
-	listint_t *previous;
+	listint_t *prev;
 	size_t i;
 	size_t left;
 	size_t right;
@@ -21,30 +26,29 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	while (temp != NULL && temp->n < value && i < size)
 	{
-		previous = temp;
+		prev = temp;
 		while (temp != NULL && temp->index != i)
 		{
 			temp = temp->next;
 		}
-		/* we found the element at the index of the list */
 		if (temp != NULL && temp->n < value)
 		{
 			i += block_size;
 		}
 		printf("Value checked at index [%ld] = [%d]\n", temp->index, temp->n);
 	}
-	left = previous->index;
+	left = prev->index;
 	right = temp->index;
 	printf("Value found between indexes [%ld] and [%ld]\n", left, right);
 
-	while (previous != NULL && previous->index <= right)
+	while (prev != NULL && prev->index <= right)
 	{
-		printf("Value checked at index [%ld] = [%d]\n", previous->index, previous->n);
-		if (previous->n == value)
+		printf("Value checked at index [%ld] = [%d]\n", prev->index, prev->n);
+		if (prev->n == value)
 		{
-			return (previous);
+			return (prev);
 		}
-		previous = previous->next;
+		prev = prev->next;
 	}
 	return (NULL);
 }
